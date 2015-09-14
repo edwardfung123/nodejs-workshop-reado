@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>04_files2.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>04_files2.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>Let’s see how we read files in SERIES.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Create a function to wrap the file loading code.</p>
+<p>path: string, the file path.</p>
+<p>cb: function, the callback when the file content is read from disk to memory.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">readOneFile</span>(<span class="hljs-params">path, cb</span>)</span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>you can load the module anywhere.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Read the file</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  fs.readFile(path, {encoding: <span class="hljs-string">'utf-8'</span>}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, data</span>)</span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Call the callback.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    cb(err, data);
+  });
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Define the files to read.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> file1 = <span class="hljs-string">'/etc/passwd'</span>;
+<span class="hljs-keyword">var</span> file2 = <span class="hljs-string">'./package.json'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Read the first file.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>readOneFile(file1, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err1, data1</span>)</span>{
+  <span class="hljs-keyword">if</span> (err1){
+    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'we got an error'</span>, err1);
+    <span class="hljs-keyword">throw</span> err;
+  }
+
+  <span class="hljs-built_in">console</span>.log(data1);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Read the 2nd file now.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  readOneFile(file2, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err2, data2</span>)</span>{
+    <span class="hljs-keyword">if</span> (err2){
+      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'we got an error'</span>, err2);
+      <span class="hljs-keyword">throw</span> err;
+    }
+
+    <span class="hljs-built_in">console</span>.log(data2);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Read more files here.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  });
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>You should now see how painful to use async code to do things in sequential
+manner which is the default mode for other language such as C, Java, Obj-C,
+Python.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>When the program which the end of the file, the program will exit normally.
+But since we have open socket (network, file io), the program will not
+terminated and wait until the socket(s) is closed. It is quite tricky when
+you write script that run once only.</p>
+
+            </div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

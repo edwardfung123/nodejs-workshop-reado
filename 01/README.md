@@ -24,3 +24,13 @@ node 01\_hello\_world.js
 =====
 
 node 02\_file.js
+
+03 Read two files
+=====
+
+node 03\_files.js
+
+04 Read two files in series
+=====
+
+node 04\_files2.js
