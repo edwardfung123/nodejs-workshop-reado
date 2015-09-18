@@ -20,8 +20,8 @@
             <div id="jump_page">
               
                 
-                <a class="source" href="06_http_server.html">
-                  06_http_server.js
+                <a class="source" href="06_http_server_1.html">
+                  06_http_server_1.js
                 </a>
               
                 
@@ -32,6 +32,11 @@
                 
                 <a class="source" href="06_http_server_3.html">
                   06_http_server_3.js
+                </a>
+              
+                
+                <a class="source" href="06_http_server_4.html">
+                  06_http_server_4.js
                 </a>
               
             </div>
@@ -184,20 +189,7 @@ The path is stored in the <code>req.url</code>. To parse it, we use the url modu
 </code></pre>
             </div>
             
-            <div class="content"><div class='highlight'><pre>  fs.readFile(path.normalize(<span class="hljs-string">'assets'</span> + urlObj.pathname), 
-              readOptions,
-              <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, data</span>)</span>{
-    <span class="hljs-keyword">if</span> (err){
-      res.statusCode = <span class="hljs-number">404</span>;
-      res.write(<span class="hljs-string">'Page not found'</span>);
-      res.end();
-      <span class="hljs-keyword">return</span>;
-    }
-    res.setHeader(<span class="hljs-string">'content-type'</span>, contentType);
-    res.write(data);
-    res.end();
-  });
-});</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  fs.readFile(path.normalize(<span class="hljs-string">'assets'</span> + urlObj.pathname), readOptions, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, data</span>)</span>{</pre></div></div>
             
         </li>
         
@@ -207,6 +199,45 @@ The path is stored in the <code>req.url</code>. To parse it, we use the url modu
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Should check the err anyway.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (err){
+      res.statusCode = <span class="hljs-number">404</span>;
+      res.write(<span class="hljs-string">'Page not found'</span>);
+      res.end();
+      <span class="hljs-keyword">return</span>;
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>The file exists.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    res.setHeader(<span class="hljs-string">'content-type'</span>, contentType);
+    res.write(data);
+    res.end();
+  });
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>the server is not listening to the request yet.</p>
 
@@ -219,17 +250,49 @@ The path is stored in the <code>req.url</code>. To parse it, we use the url modu
         </li>
         
         
-        <li id="section-9">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>try visit:</p>
 <ul>
 <li><a href="http://localhost:3001/test.html">http://localhost:3001/test.html</a>  (should return 200)</li>
 <li><a href="http://localhost:3001/a/b.html">http://localhost:3001/a/b.html</a>   (should return 404)</li>
 <li><a href="http://localhost:3001/nodejs.jpg">http://localhost:3001/nodejs.jpg</a> (what is it?)</li>
+</ul>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>The problem of this server is:</p>
+<ul>
+<li>Adding handlers are painful (not easy to modularize)</li>
+<li>Not using the http caching mechanisim.</li>
+<li>Super painful to handle MIME type (content-type)</li>
+<li>The response are not compressed. (gzip)</li>
 </ul>
 
             </div>
