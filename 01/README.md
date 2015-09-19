@@ -39,3 +39,20 @@ node 04\_files2.js
 =====
 
 node 05\_using\_modules.js
+
+06 Basic HTTP server
+=====
+
+Using the http module from nodejs to build our own http server. The purpose is
+to understand how much work needs to be done in order to build something modern
+and useful.
+
+node 06\_http\_server\_1
+node 06\_http\_server\_2
+node 06\_http\_server\_3
+node 06\_http\_server\_4
+
+07 HTTP server with ExpressJS
+=====
+
+Build practical http server with [ExpressJS](http://expressjs.com/).
