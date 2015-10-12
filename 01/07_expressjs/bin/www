@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 
+var db = require('../models/sqlite').init('test.db');
 var app = require('../app');
 var debug = require('debug')('07_expressjs:server');
 var http = require('http');
@@ -29,6 +30,16 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+db.on('close', function(err){
+  console.log(err);
+  console.log('db closed');
+
+  var reqs = process._getActiveRequests();
+  console.log(reqs);
+  var handles = process._getActiveHandles();
+  console.log(handles);
+  server.close();
+});
 /**
  * Normalize a port into a number, string, or false.
  */

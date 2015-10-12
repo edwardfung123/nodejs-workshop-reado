@@ -1,9 +1,8 @@
 var request = require('request');
 
-var url = 'http://localhost:3000/api/v1/users';
+var url = 'http://localhost:3000/api/v2/users';
 
 var data = {
-  id: 'edwardfung',
   email: 'edwardfung@redso.com.hk',
   name: 'Edward Fung',
 };

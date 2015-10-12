@@ -8,13 +8,24 @@ var DB = {
     }
 
     return db;
+  },
+  getDB: function(){
+    return db;
   }
 };
 
-function cleanup(){
+function cleanup(e){
   console.log('cleaning up the db connection');
   if (db){
-    db.close();
+    console.log('close the DB');
+    db.close(function(err){
+      if (err){
+        console.log('error in close');
+        console.log(err);
+        return;
+      }
+      db = null;
+    });
   }
 }
 

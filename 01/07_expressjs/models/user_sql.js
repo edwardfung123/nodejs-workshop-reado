@@ -1,10 +1,13 @@
 var DB = require('./sqlite.js');
-var db = DB.init('test.db');
+var db = DB.getDB();
+if (!db){
+  DB.init('test.db');
+}
 var util = require('util');
 var _ = require('underscore');
 
 // We still use the in memory users.
-var users = [];
+//var users = [];
 
 db.serialize(function(){
   // I really hate SQL but have to get used to it (o:
@@ -56,19 +59,38 @@ User.get_by_id = function(uid, cb){
 
 User.find = function(options, cb){
   console.log(options);
-  var u = users.slice(options.offset, options.offset + options.hits);
-  var err = null;
-  process.nextTick(function(){
-    cb(err, u)
+  options = _.defaults(options, {offset: 0, limit: 10});
+  //var u = users.slice(options.offset, options.offset + options.hits);
+  var sql = db.prepare('SELECT * FROM users LIMIT $limit OFFSET $offset');
+  sql.all({
+    $limit: options.hits,
+    $offset: options.offset,
+  }, function(err, u){
+    process.nextTick(function(){
+      cb(err, u)
+    });
+    
   });
+  sql.finalize(function(err){
+    if (err){
+      process.nextTick(function(){
+        cb(err, null)
+      });
+    }
+  });
+
 };
 
 User.prototype.save = function(cb){
   cb = cb || function(){};
   console.log(this);
   //users.push(this);
-  var sql = db.prepare('INSERT INTO users (name) VALUES ($name)');
-  sql.run(this.attr);
+  var sql = db.prepare('INSERT INTO users (name, email) VALUES ($name, $email)');
+  var values = _.defaults(this.attr, {email: '', name: ''});
+  sql.run({
+    $email: values.email,
+    $name: values.name,
+  });
   console.log(sql);
   sql.finalize(function(err){
     process.nextTick(function(){

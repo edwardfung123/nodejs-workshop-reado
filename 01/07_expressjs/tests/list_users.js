@@ -1,6 +1,6 @@
 var request = require('request');
 
-var url = 'http://localhost:3000/api/v1/users';
+var url = 'http://localhost:3000/api/v2/users';
 
 request.get(url, function(err, res, body){
   if (err){

@@ -8,7 +8,7 @@ var _ = require('underscore');
 //   should not care about how those models' CRUD action are implemented.
 
 // Create an in memory users db (o:
-var User = require('../models/user.js');
+var User = require('../models/user_sql.js');
 
 router.post('/users', function(req, res, next) {
   // TODO: create a new user in the DB.
