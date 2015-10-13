@@ -30,6 +30,14 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+// set keep alive
+// see http://stackoverflow.com/a/13483998/1822624
+server.on('connection', function(socket){
+  console.log("A new connection was made by a client.");
+  socket.setTimeout(5 * 1000); 
+  // 30 second timeout. Change this as you see fit.
+});
+
 db.on('close', function(err){
   console.log(err);
   console.log('db closed');
