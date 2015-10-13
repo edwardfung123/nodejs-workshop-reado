@@ -44,11 +44,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);         // All requests to /.* is handled by `routes`
 app.use('/users', users);     // All requests to /users/.* is handled by `users`
 
-var exeV1 = require('./exercises/v1.js');
+var exeV1 = require('./exercises/router_v1.js');
 app.use('/api/v1', exeV1);    // Let's do some exercises
 
-var exeV2 = require('./answers/v2.js');
-app.use('/api/v2', exeV2);    // More exercise
+var ansV1 = require('./answers/router_v1.js');
+app.use('/api/ansv1', ansV1);    // answers for exercise v1
+
+//var exeV2 = require('./exercises/router_v2.js');
+//app.use('/api/v2', exeV2);    // More exercise
+
+var ansV2 = require('./answers/router_v2.js');
+app.use('/api/ansv2', ansV2);    // More exercise
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
