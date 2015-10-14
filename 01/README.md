@@ -1,5 +1,6 @@
-00 Install
-=====
+# 00 Install nodejs
+
+## Steps
 
 * Open terminal!
 * Make sure you have `~/.bash_profile`, `~/.zshrc` or `~/.profile`
@@ -21,43 +22,57 @@
   node -v
   ```
 
-01 Hello World
-=====
+# 01 Hello World
 
-node 01\_hello\_world.js
+The first thing to do when you learn a new programming language.
 
-02 Read a file
-=====
+## Run
+```bash
+node 01_hello_world.js
+```
 
-node 02\_file.js
+# 02 Read a file
 
-03 Read two files
-=====
+## Run
+```bash
+node 02_file.js
+```
 
-node 03\_files.js
+# 03 Read two files
 
-04 Read two files in series
-=====
+How about reading two files?
 
-node 04\_files2.js
+## Run
+```bash
+node 03_files.js
+```
 
-05 Using modules
-=====
+# 04 Read two files in series
 
-node 05\_using\_modules.js
+## Run
+```bash
+node 04_files2.js
+```
 
-06 Basic HTTP server
-=====
+# 05 Using modules
+
+## Run
+```bash
+node 05_using_modules.js
+```
+
+# 06 Basic HTTP server
 
 Using the http module from nodejs to build our own http server. The purpose is
 to understand how much work needs to be done in order to build something modern
 and useful.
 
+## Run
 ```bash
-node 06\_http\_server\_1
-node 06\_http\_server\_2
-node 06\_http\_server\_3
-node 06\_http\_server\_4
+node 06_http_server_1
+node 06_http_server_2
+node 06_http_server_3
+node 06_http_server_4
 ```
 
 07 HTTP server with ExpressJS and SQLite3
