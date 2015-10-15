@@ -7,9 +7,10 @@ var _ = require('underscore');
 // - better abstract the DB implementation from the API layer. The API layer
 //   should not care about how those models' CRUD action are implemented.
 
-// Create an in memory users db (o:
-var User = require('../models/user_sql.js');
-var Post = require('../models/post_sql.js');
+// Hide all implementation of the user object. So the API layer
+// does not need to know it is in memory or in DB.
+var User = require('../models/user_sql.js');    // sqlite3 version
+//var User = require('../models/user.js');    // memory version
 
 router.post('/users', function(req, res, next) {
   // TODO: create a new user in the DB.
@@ -71,6 +72,10 @@ router.get('/users/:id', function(req, res, next){
 
 });
 
+// -----
+// Posts related API
+
+var Post = require('../models/post_sql.js');
 router.post('/posts', function(req, res, next) {
   // TODO: create a new posts in the DB.
   var post = req.body;

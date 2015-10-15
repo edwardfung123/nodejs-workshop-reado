@@ -19,12 +19,15 @@ _.each(members, function(member, i){
 
 console.log('------------------');
 
-// Load our own module
+// define a variable. In fact the name of this variable is same as the variable in the module..
 var local_var = 'DEF';
 
+// Load our own module
 var Redso = require('./05_redso_module.js');
 
+// Do something
 Redso.test();
 
+// Let's check the values.
 console.log('local_var = ' + local_var);
 console.log('Redso.get_local_var() = ' + Redso.get_local_var());
