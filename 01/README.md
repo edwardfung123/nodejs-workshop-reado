@@ -33,6 +33,8 @@ node 01_hello_world.js
 
 # 02 Read a file
 
+Read file in async style. It is our first async method.
+
 ## Run
 ```bash
 node 02_file.js
@@ -40,7 +42,7 @@ node 02_file.js
 
 # 03 Read two files
 
-How about reading two files?
+How about reading two files async? It is a bit different from what you usually do.
 
 ## Run
 ```bash
@@ -49,12 +51,16 @@ node 03_files.js
 
 # 04 Read two files in series
 
+Run two files one by one. AKA chaining.
+
 ## Run
 ```bash
 node 04_files2.js
 ```
 
 # 05 Using modules
+
+Modularize your code.
 
 ## Run
 ```bash
@@ -86,5 +92,5 @@ node 06_http_server_4
 
 - Create Heroku account
 - Deploy the app on Heroku
-  - Convert SQLite3 to Postgre
+  - [TODO] Convert SQLite3 to Postgre
 
